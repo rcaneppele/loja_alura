@@ -21,5 +21,9 @@ public class Produto {
     private BigDecimal preco;
     private String descricao;
 
-
+    public Produto(CadastroDeProdutoDto dto) {
+        this.nome = dto.nome();
+        this.preco = dto.preco();
+        this.descricao = dto.descricao();
+    }
 }
