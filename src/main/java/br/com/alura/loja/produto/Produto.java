@@ -25,4 +25,9 @@ public class Produto {
         this.preco = dto.preco();
         this.descricao = dto.descricao();
     }
+
+    public void atualizar(AtualizacaoDeProdutoDto dto) {
+        this.descricao = dto.descricao();
+        this.preco = dto.preco();
+    }
 }

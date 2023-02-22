@@ -16,6 +16,7 @@
                     <th>ID</th>
                     <th>NOME</th>
                     <th>PREÇO</th>
+                    <th>AÇÕES</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,15 @@
                     <td th:text="${p.id}"></td>
                     <td th:text="${p.nome}"></td>
                     <td th:text="${p.preco}"></td>
+                    <td>
+                        <a th:href="@{/produtos/{id}(id=${p.id})}" class="btn btn-info">Editar</a>
+                        <form class="d-inline" action="/produtos" method="post">
+                            <input type="hidden" name="id" th:value="${p.id}">
+                            <input type="hidden" name="_method" value="delete">
+
+                            <button class="btn btn-danger">Excluir</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

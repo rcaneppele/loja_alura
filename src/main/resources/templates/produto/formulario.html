@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro de Produto</title>
@@ -11,19 +11,22 @@
         <h1 class="text-center">Cadastro de produto</h1>
 
         <form method="post" action="/produtos">
+            <input type="hidden" name="id" th:value="${produto?.id}" th:if="${produto != null}">
+            <input type="hidden" name="_method" value="put" th:if="${produto != null}">
+
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input id="nome" name="nome" class="form-control">
+                <input id="nome" name="nome" class="form-control" th:value="${produto?.nome}">
             </div>
 
             <div class="mb-3">
                 <label for="preco" class="form-label">Preço</label>
-                <input id="preco" name="preco" class="form-control">
+                <input id="preco" name="preco" class="form-control" th:value="${produto?.preco}">
             </div>
 
             <div class="mb-3">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea id="descricao" name="descricao" class="form-control"></textarea>
+                <textarea id="descricao" name="descricao" class="form-control" th:text="${produto?.descricao}"></textarea>
             </div>
 
             <input type="submit" value="Cadastrar" class="btn btn-primary">
