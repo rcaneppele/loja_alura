@@ -29,6 +29,13 @@
                 <textarea id="descricao" name="descricao" class="form-control" th:text="${produto?.descricao}"></textarea>
             </div>
 
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria</label>
+                <select id="categoria" name="categoria" class="form-control">
+                    <option th:each="c : ${categorias}" th:text="${c.nome}" th:value="${c.id}"></option>
+                </select>
+            </div>
+
             <input type="submit" value="Cadastrar" class="btn btn-primary">
         </form>
     </div>

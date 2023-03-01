@@ -1,5 +1,6 @@
 package br.com.alura.loja.controller;
 
+import br.com.alura.loja.categoria.CategoriaRepository;
 import br.com.alura.loja.produto.AtualizacaoDeProdutoDto;
 import br.com.alura.loja.produto.CadastroDeProdutoDto;
 import br.com.alura.loja.produto.Produto;
@@ -19,15 +20,26 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
 
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
     @GetMapping("/novo")
-    public String carregarPaginaFormulario() {
+    public String carregarPaginaFormulario(Model model) {
+        var categorias = categoriaRepository.findAll();
+
+        model.addAttribute("categorias", categorias);
+
         return "produto/formulario";
     }
 
     @PostMapping
     @Transactional
     public String cadastrar(CadastroDeProdutoDto dto) {
-        repository.save(new Produto(dto));
+
+        var categoria = categoriaRepository
+                .getReferenceById(dto.categoria());
+
+        repository.save(new Produto(dto, categoria));
         return "redirect:produtos";
     }
 

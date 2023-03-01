@@ -1,7 +1,7 @@
 package br.com.alura.loja.produto;
 
+import br.com.alura.loja.categoria.Categoria;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,10 +20,15 @@ public class Produto {
     private BigDecimal preco;
     private String descricao;
 
-    public Produto(CadastroDeProdutoDto dto) {
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    public Produto(CadastroDeProdutoDto dto, Categoria categoria) {
         this.nome = dto.nome();
         this.preco = dto.preco();
         this.descricao = dto.descricao();
+        this.categoria = categoria;
     }
 
     public void atualizar(AtualizacaoDeProdutoDto dto) {

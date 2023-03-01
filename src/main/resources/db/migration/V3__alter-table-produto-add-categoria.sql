@@ -1,0 +1,1 @@
+alter table produtos add categoria_id bigint;
