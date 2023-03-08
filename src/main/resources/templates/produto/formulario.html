@@ -16,7 +16,7 @@
 
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input id="nome" name="nome" class="form-control" th:value="${produto?.nome}">
+                <input id="nome" name="nome" class="form-control" th:value="${produto?.nome}" th:disabled="${produto != null}">
             </div>
 
             <div class="mb-3">
@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <label for="categoria" class="form-label">Categoria</label>
                 <select id="categoria" name="categoria" class="form-control">
-                    <option th:each="c : ${categorias}" th:text="${c.nome}" th:value="${c.id}"></option>
+                    <option th:each="c : ${categorias}" th:text="${c.nome}" th:value="${c.id}" th:selected="${c.id == produto?.categoria?.id}"></option>
                 </select>
             </div>
 

@@ -31,8 +31,9 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public void atualizar(AtualizacaoDeProdutoDto dto) {
+    public void atualizar(AtualizacaoDeProdutoDto dto, Categoria categoria) {
         this.descricao = dto.descricao();
         this.preco = dto.preco();
+        this.categoria = categoria;
     }
 }

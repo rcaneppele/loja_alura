@@ -60,8 +60,10 @@ public class ProdutoController {
     @GetMapping("/{id}")
     public String detalhar(@PathVariable Long id, Model model) {
         var produto = repository.getReferenceById(id);
-
         model.addAttribute("produto", produto);
+
+        var categorias = categoriaRepository.findAll();
+        model.addAttribute("categorias", categorias);
 
         return "produto/formulario";
     }
@@ -70,8 +72,9 @@ public class ProdutoController {
     @Transactional
     public String atualizar(AtualizacaoDeProdutoDto dto) {
         var produto = repository.getReferenceById(dto.id());
+        var categoria = categoriaRepository.getReferenceById(dto.categoria());
 
-        produto.atualizar(dto);
+        produto.atualizar(dto, categoria);
 
         return "redirect:produtos";
     }

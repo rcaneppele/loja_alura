@@ -21,6 +21,9 @@ public class CategoriaController {
     @Autowired
     private CategoriaRepository repository;
 
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
     @GetMapping("/nova")
     public String carregarPaginaFormulario() {
         return "categoria/formulario";
@@ -43,8 +46,12 @@ public class CategoriaController {
     @DeleteMapping
     @Transactional
     public String remover(Long id) {
-        repository.deleteById(id);
-        return "redirect:categorias";
+        if (!produtoRepository.existsByCategoriaId(id)) {
+            repository.deleteById(id);
+            return "redirect:categorias";
+        }
+
+        return "redirect:categorias?erro=Categoria não pode ser excluída!";
     }
 
     @GetMapping("/{id}")
