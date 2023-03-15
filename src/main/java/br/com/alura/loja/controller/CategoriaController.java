@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("categorias")
@@ -45,13 +46,14 @@ public class CategoriaController {
 
     @DeleteMapping
     @Transactional
-    public String remover(Long id) {
+    public String remover(Long id, RedirectAttributes redirect) {
         if (!produtoRepository.existsByCategoriaId(id)) {
             repository.deleteById(id);
             return "redirect:categorias";
         }
 
-        return "redirect:categorias?erro=Categoria não pode ser excluída!";
+        redirect.addFlashAttribute("erro", "Categoria não pode ser excluída!");
+        return "redirect:categorias";
     }
 
     @GetMapping("/{id}")

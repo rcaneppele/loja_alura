@@ -8,9 +8,29 @@
 </head>
 <body>
     <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Home</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" th:href="@{/produtos}">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" th:href="@{/categorias}">Categorias</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
         <h1 class="text-center">Lista de categorias</h1>
 
-        <p class="bg-danger" th:if="${param.erro != null}" th:text="${param.erro}"></p>
+        <p class="bg-danger" th:if="${erro != null}" th:text="${erro}"></p>
 
         <table class="table table-striped table-hover">
             <thead>
